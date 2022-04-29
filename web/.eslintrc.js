@@ -35,8 +35,8 @@ module.exports = {
     'arrow-spacing': [
       2,
       {
-        before: true,
-        after: true
+        before: false,
+        after: false
       }
     ],
     'block-spacing': [2, 'always'],
@@ -266,5 +266,13 @@ module.exports = {
       }
     ],
     'array-bracket-spacing': [2, 'never']
+  },
+  "overrides": {
+    files: [
+      "*.vue"
+    ],
+    rules:{
+      "indent": "off"
+    }
   }
 }
