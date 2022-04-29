@@ -10,7 +10,7 @@
   />
 </template>
 
-<script setup>
+<script >
 export default {
     methods: {
       getCheckedNodes() {
