@@ -99,11 +99,11 @@ jwt:
 local:
   path: uploads/file
 mysql:
-  path: 10.163.98.188
+  path: 127.0.0.1 #10.163.98.188 
   port: "3306"
   config: charset=utf8mb4&parseTime=True
-  db-name: gva
-  username: root
+  db-name: gva 
+  username: gva #root
   password: SiteWeb20542054
   max-idle-conns: 10
   max-open-conns: 100
@@ -134,7 +134,7 @@ redis:
   password: ""
 system:
   env: public
-  addr: 8888
+  addr: 8880
   db-type: mysql
   oss-type: local
   use-multipoint: false
