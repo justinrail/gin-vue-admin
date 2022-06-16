@@ -99,12 +99,12 @@ jwt:
 local:
   path: uploads/file
 mysql:
-  path: 127.0.0.1 #10.163.98.188 
+  path: 10.163.98.188 #127.0.0.1 #
   port: "3306"
   config: charset=utf8mb4&parseTime=True
   db-name: gva 
-  username: gva #root
-  password: SiteWeb20542054
+  username: gva
+  password: gvagva123
   max-idle-conns: 10
   max-open-conns: 100
   log-mode: error
