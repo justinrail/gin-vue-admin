@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/entity"
 )
@@ -129,45 +130,49 @@ func (point *Point) updatePacketLogs(cov *COV) {
 }
 
 //GetCurrentValue GetCurrentValue
-func (point *Point) GetCurrentValue() (string, error) {
+func (point *Point) GetCurrentValue() string {
 	if !point.DataIsReady() {
-		return "", fmt.Errorf("data is not ready")
+		return "--"
 	}
 
 	if point.DataType == 1 {
-		return fmt.Sprintf("%d", int(point.CurrentNumericValue)), nil
+		return fmt.Sprintf("%d", int(point.CurrentNumericValue))
 	} else if point.DataType == 2 {
 		if len(point.Accuracy) == 0 {
-			return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit), nil
+			return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit)
 		}
 		dotPos := strings.Index(point.Accuracy, ".")
 		if dotPos < 0 {
-			return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit), nil
+			return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit)
 		}
 
 		if dotPos == 1 {
-			return fmt.Sprintf("%.1f %s", point.CurrentNumericValue, point.Unit), nil
+			return fmt.Sprintf("%.1f %s", point.CurrentNumericValue, point.Unit)
 		}
 
 		if dotPos == 2 {
-			return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit), nil
+			return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit)
 		}
 
 		if dotPos == 3 {
-			return fmt.Sprintf("%.3f %s", point.CurrentNumericValue, point.Unit), nil
+			return fmt.Sprintf("%.3f %s", point.CurrentNumericValue, point.Unit)
 		}
 
 		if dotPos == 4 {
-			return fmt.Sprintf("%.4f %s", point.CurrentNumericValue, point.Unit), nil
+			return fmt.Sprintf("%.4f %s", point.CurrentNumericValue, point.Unit)
 		}
 
-		return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit), nil
+		return fmt.Sprintf("%.2f %s", point.CurrentNumericValue, point.Unit)
 
 	} else if point.DataType == 3 {
-		return point.CurrentStringValue, nil
+		return point.CurrentStringValue
 	} else {
-		return "", fmt.Errorf("datatype not supported")
+		return "NA"
 	}
+}
+
+func (point *Point) GetUpdateTimeString() string {
+	return time.Unix(point.UpdateTime, 0).Format("2006-01-02 15:04:05")
 }
 
 //UpdateData update corepoint data

@@ -8,7 +8,7 @@ import service from '@/utils/request'
 // @Produce application/json
 // @Param data query request.PageInfo true "获取gatewaydevice列表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
-// @Router /zone/getZoneList [get]
+// @Router /gatewaydevicetree/getgatewaydevicetreebody [get]
 export const getGatewayDeviceTree = (params) => {
   return service({
     url: '/gatewaydevicetree/getgatewaydevicetreebody',

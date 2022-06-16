@@ -27,7 +27,7 @@ func Start() {
 	// })
 
 	timer.NewTimerTask().AddTaskByFunc("func.mock.cov", "@every 1s", func() {
-		bus.COVBus <- randomCOVs(10)
+		bus.COVBus <- randomCOVs(100)
 	})
 
 	// timer.NewTimerTask().AddTaskByFunc("func.mock.coa", "@every 2s", func() {

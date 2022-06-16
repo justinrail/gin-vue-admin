@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/flipped-aurora/gin-vue-admin/server/core"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"github.com/flipped-aurora/gin-vue-admin/server/hub"
 	"github.com/flipped-aurora/gin-vue-admin/server/initialize"
 	"go.uber.org/zap"
 )
@@ -32,6 +33,6 @@ func main() {
 		db, _ := global.GVA_DB.DB()
 		defer db.Close()
 	}
-	//hub.Run()
+	hub.Run()
 	core.RunWindowsServer()
 }

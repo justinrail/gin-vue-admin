@@ -16,10 +16,12 @@ func (stater *PointStater) Process() {
 	for covs := range stater.In {
 		for covIndex := range covs {
 			cov := covs[covIndex]
-			point, existPoint := shadow.GetPointByKey(cov.PointKey)
+			if cov != nil {
+				point, existPoint := shadow.GetPointByKey(cov.PointKey)
 
-			if existPoint {
-				point.UpdateData(cov)
+				if existPoint {
+					point.UpdateData(cov)
+				}
 			}
 		}
 	}

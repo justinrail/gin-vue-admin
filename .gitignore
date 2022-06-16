@@ -28,3 +28,4 @@ yarn-error.log*
 
 *.iml
 server/__debug_bin.exe
+server/__debug_bin

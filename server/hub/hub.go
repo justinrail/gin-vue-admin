@@ -3,6 +3,7 @@ package hub
 import (
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/shadow"
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/south/stub"
+	"github.com/flipped-aurora/gin-vue-admin/server/hub/topo"
 )
 
 func Run() {
@@ -14,4 +15,8 @@ func Run() {
 	// 标准B接口协议
 	//air.Ready()
 	//go air.Start()
+
+	//数据处理层启动
+	topo.Ready()
+	go topo.Start()
 }

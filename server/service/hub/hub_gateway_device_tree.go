@@ -2,42 +2,31 @@ package hub
 
 import (
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/shadow"
+	hubRes "github.com/flipped-aurora/gin-vue-admin/server/model/hub/response"
 )
-
-type GatewayDeviceVM struct {
-	GatewayID      int    `json:"gatewayID"`
-	GatewayName    string `json:"gatewayName"`
-	GatewayAddress string `json:"gatewayAddress"`
-	Devices        []*DeviceVM
-}
-
-type DeviceVM struct {
-	DeviceID   int    `json:"deviceID"`
-	DeviceName string `json:"deviceName"`
-}
 
 type GatewayDeviceTreeService struct {
 }
 
 // GetAllGatewayWithDevices 获取GatewayWithDevices记录
-func (srv *GatewayDeviceTreeService) GetAllGatewayWithDevices() []*GatewayDeviceVM {
+func (srv *GatewayDeviceTreeService) GetAllGatewayWithDevices() []*hubRes.GatewayDevice {
 	gateways := shadow.GetGateways()
-	tree := make([]*GatewayDeviceVM, 0)
+	tree := make([]*hubRes.GatewayDevice, 0)
 
 	for index := range gateways {
 		gw := gateways[index]
 
-		gatewayVM := &GatewayDeviceVM{
+		gatewayVM := &hubRes.GatewayDevice{
 			GatewayName:    gw.Name,
 			GatewayID:      gw.GatewayID,
 			GatewayAddress: gw.IP,
 		}
-		gatewayVM.Devices = make([]*DeviceVM, 0)
+		gatewayVM.Devices = make([]*hubRes.LiteDevice, 0)
 
 		for devIndex := range gw.Devices {
 			dev := gw.Devices[devIndex]
 
-			deviceVM := &DeviceVM{
+			deviceVM := &hubRes.LiteDevice{
 				DeviceID:   dev.DeviceID,
 				DeviceName: dev.DeviceName,
 			}
