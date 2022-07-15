@@ -91,6 +91,8 @@ hub:
   realimage-subscibe-url: udp://10.169.42.116:9000
   realsignal-publish-url: udp://10.169.42.116:9000
   subscibe-url: udp://10.169.42.116:9000
+  mqtt-client-prefix: ark-
+  mqtt-broker-host: localhost
 jwt:
   buffer-time: 86400
   expires-time: 604800

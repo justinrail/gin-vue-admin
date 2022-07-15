@@ -2,6 +2,7 @@ package hub
 
 import (
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/shadow"
+	"github.com/flipped-aurora/gin-vue-admin/server/hub/south/cascade"
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/south/stub"
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/topo"
 )
@@ -19,4 +20,8 @@ func Run() {
 	//数据处理层启动
 	topo.Ready()
 	go topo.Start()
+
+	//级联接口
+	cascade.Ready()
+	go cascade.Start()
 }
