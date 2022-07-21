@@ -1,10 +1,8 @@
 package cascade
 
 import (
-	"fmt"
-	"time"
-
 	mqtt "github.com/eclipse/paho.mqtt.golang"
+	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/flipped-aurora/gin-vue-admin/server/hub/util"
 )
 
@@ -24,12 +22,17 @@ func Ready() {
 }
 
 func Start() {
-	mqttClient.Publish("ark/cov/1", 0, false, "23")
-	time.Sleep(time.Duration(3) * time.Second)
-	mqttClient.Publish("ark/cov/1", 1, false, "TEST")
+	// mqttClient.Publish("ark/cov/1", 0, false, "23")
+	// time.Sleep(time.Duration(3) * time.Second)
+	// mqttClient.Publish("ark/cov/1", 1, false, "TEST")
 
 	//listen
+	if !global.GVA_VP.GetBool("hub.mqtt-recv-enable") {
+		return
+	}
+
 	go mqttClient.Listen(func(c mqtt.Client, m mqtt.Message) {
-		fmt.Printf("sub [%s] %s\n", m.Topic(), string(m.Payload()))
+		handleCOV(m.Topic(), m.Payload())
+		//fmt.Printf("sub [%s] %s\n", m.Topic(), string(m.Payload()))
 	})
 }

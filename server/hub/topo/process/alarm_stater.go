@@ -13,7 +13,7 @@ import (
 //Confirm被认为是业务，不在告警机制上处理，在ActiveAlarm处处理
 type AlarmStater struct {
 	flow.Component
-	In  <-chan *domain.COA
+	In  chan *domain.COA
 	Out chan<- *domain.COA //提供过滤后的COA给ActiveAlarm Ponder进行告警缓存维护
 }
 

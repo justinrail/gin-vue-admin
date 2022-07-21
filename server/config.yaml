@@ -93,6 +93,8 @@ hub:
   subscibe-url: udp://10.169.42.116:9000
   mqtt-client-prefix: ark-
   mqtt-broker-host: localhost
+  mqtt-send-enable: true
+  mqtt-recv-enable: true
 jwt:
   buffer-time: 86400
   expires-time: 604800

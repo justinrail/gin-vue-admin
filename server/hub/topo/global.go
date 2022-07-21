@@ -26,18 +26,28 @@ func initGraph() {
 	Vars.Graph.Add("point_stater", new(process.PointStater))
 	Vars.Graph.Add("alarm_stater", new(process.AlarmStater))
 	Vars.Graph.Add("activealarm_ponder", new(process.ActiveAlarmPonder))
+	Vars.Graph.Add("coa_spout", new(process.COASpout))
+	Vars.Graph.Add("cov_spout", new(process.COVSpout))
+	Vars.Graph.Add("coa_cascade_sender", new(process.COACascadeSender))
+	Vars.Graph.Add("cov_cascade_sender", new(process.COVCascadeSender))
 
+	Vars.Graph.Connect("coa_spout", "COAState", "alarm_stater", "In")
 	Vars.Graph.Connect("alarm_stater", "Out", "activealarm_ponder", "In")
-	// net.Connect("cov_spout", "COVOut1", "cov_data_updater", "In")
+
+	Vars.Graph.Connect("coa_spout", "COACascade", "coa_cascade_sender", "In")
+
+	Vars.Graph.Connect("cov_spout", "COVState", "point_stater", "In")
+	Vars.Graph.Connect("cov_spout", "COVCascade", "cov_cascade_sender", "In")
+
 	// net.Connect("cov_data_updater", "StateOut", "cov_state_normalizer", "In")
 	// net.Connect("cov_state_normalizer", "StateOut", "cov_state_updater", "In")
 	// net.Connect("cov_state_updater", "CoreLiteEventOut2", "phoenix_cov_hooker", "In")
-	// net.Connect("cov_spout", "COVOut2", "cov_ashbin", "In")
 
 	// Network ports
 	Vars.Graph.MapInPort("cog_in", "gateway_stater", "In")
 	Vars.Graph.MapInPort("cod_in", "device_stater", "In")
-	Vars.Graph.MapInPort("cov_in", "point_stater", "In")
-	Vars.Graph.MapInPort("coa_in", "alarm_stater", "In")
-
+	// Vars.Graph.MapInPort("cov_in", "point_stater", "In")
+	// Vars.Graph.MapInPort("coa_in", "alarm_stater", "In")
+	Vars.Graph.MapInPort("cov_in", "cov_spout", "In")
+	Vars.Graph.MapInPort("coa_in", "coa_spout", "In")
 }

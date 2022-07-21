@@ -11,11 +11,11 @@ type COV struct {
 	DeviceID int
 	PointID  int
 	IsValid  bool
-	PointKey string
+	PointKey string `json:"-"`
 	//当前数值值
-	CurrentNumericValue float32
+	CurrentNumericValue float32 `json:"NumValue"`
 	//当前字符串值
-	CurrentStringValue string
+	CurrentStringValue string `json:",omitempty"`
 
 	Timestamp int64
 }

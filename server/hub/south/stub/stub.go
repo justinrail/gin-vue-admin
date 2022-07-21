@@ -26,8 +26,9 @@ func Start() {
 	// 	bus.CODBus <- randomCOD()
 	// })
 
-	timer.NewTimerTask().AddTaskByFunc("func.mock.cov", "@every 1s", func() {
+	timer.NewTimerTask().AddTaskByFunc("func.mock.cov", "@every 10s", func() {
 		bus.COVBus <- randomCOVs(100)
+		//fmt.Printf("covbus count: %d\n", bus.COVBus)
 	})
 
 	// timer.NewTimerTask().AddTaskByFunc("func.mock.coa", "@every 2s", func() {
