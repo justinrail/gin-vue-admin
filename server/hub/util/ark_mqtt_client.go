@@ -91,9 +91,9 @@ func (arkMQTTClient *ArkMQTTClient) New() error {
 	uid := strconv.FormatInt(time.Now().Unix(), 10)
 
 	arkMQTTClient.config = &MQTTClientConfig{
-		Host:     global.GVA_VP.GetString("mqtt-broker-host"),
+		Host:     global.GVA_VP.GetString("hub.mqtt-broker-host"),
 		Port:     1883,
-		ClientID: global.GVA_VP.GetString("mqtt-client-prefix") + uid,
+		ClientID: global.GVA_VP.GetString("hub.mqtt-client-prefix") + uid,
 	}
 
 	return arkMQTTClient.Connect()
